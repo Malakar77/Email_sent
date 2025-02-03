@@ -35,7 +35,7 @@ class MailSender {
             $this->mail->addAddress($email, htmlspecialchars_decode($name));
 
             // Тема письма
-            $this->mail->Subject = 'АК Сплав Металлопрокат';
+            $this->mail->Subject =  $_ENV['EMAIL_SUBJECT'];
 
             // HTML-контент письма
             $this->mail->isHTML(true);
