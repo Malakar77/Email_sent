@@ -48,6 +48,7 @@ foreach ($users as $user) {
     $name = trim($user['name']);
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+         error_log("Некорректный email " . $email, 3, 'error_log.txt');
         echo 'Некорректный email ' . $email . "\n";
         continue;
     }
