@@ -22,16 +22,17 @@
    ```
 5. Настройте параметры почты в `.env` файле:
    ```env
-   MAIL_MAILER=smtp
-   MAIL_HOST=smtp.example.com
-   MAIL_PORT=587
-   MAIL_USERNAME=your_email@example.com
-   MAIL_PASSWORD=your_password
-   MAIL_ENCRYPTION=tls
-   MAIL_FROM_ADDRESS=your_email@example.com
-   MAIL_FROM_NAME="Your Name"
+   EMAIL_HOST=vip232.hosting.reg.ru
+   EMAIL_SMTP=true;
+   EMAIL_USERNAME=mail@example.ru
+   EMAIL_PASS=my_pass
+   EMAIL_SMTP_SECURE=PHPMailer::ENCRYPTION_STARTTLS
+   EMAIL_PORT=587
+   EMAIL_CHARSET=UTF-8
+   
+   EMAIL_SUBJECT=mail #Тема письма
    LINK_FILE=/path/index.html # Верстка рассылки
-   ALT_BODY=/альтернативный текст
+   ALT_BODY='альтернативный текст'
    ```
 
 6. Запустите рассылки:
