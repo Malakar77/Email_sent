@@ -22,6 +22,16 @@
    ```
 5. Настройте параметры почты в `.env` файле:
    ```env
+   #Подключение к Базе данных
+   DB_HOST=localhost
+   DB_NAME=my_sent_email
+   DB_USER=user
+   DB_PASS=
+   # Имя таблицы и название столбцов
+   TABLE=email
+   COLUMN_MAME=name
+   COLUMN_EMAIL=email
+   #Настройка почтовой отправки
    EMAIL_HOST=vip232.hosting.reg.ru
    EMAIL_SMTP=true;
    EMAIL_USERNAME=mail@example.ru
@@ -29,7 +39,7 @@
    EMAIL_SMTP_SECURE=PHPMailer::ENCRYPTION_STARTTLS
    EMAIL_PORT=587
    EMAIL_CHARSET=UTF-8
-   
+   #Настройка Сообщения HTML
    EMAIL_SUBJECT=mail #Тема письма
    LINK_FILE=/path/index.html # Верстка рассылки
    ALT_BODY='альтернативный текст'
