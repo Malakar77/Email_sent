@@ -46,6 +46,7 @@ class MailSender {
             $this->mail->send();
             return true;
         } catch (Exception $e) {
+            error_log("Некорректный email " . $this->mail->ErrorInfo, 3, 'error_log.txt');
             echo "Ошибка при отправке письма: {$this->mail->ErrorInfo}";
             return false;
         }
