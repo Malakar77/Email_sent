@@ -21,6 +21,7 @@ function validateName($name) {
 }
 
 if (!validateName($table) || !validateName($column_name) || !validateName($column_email)) {
+     error_log("Неверное имя таблицы или колонки. ", 3, 'error_log.txt');
     throw new Exception("Неверное имя таблицы или колонки.");
 }
 
