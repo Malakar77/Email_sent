@@ -8,6 +8,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 class MailSender {
     private $mail;
+    private $key;
 
     /**
      * @throws Exception
@@ -15,7 +16,6 @@ class MailSender {
     public function __construct() {
         $dotenv = Dotenv::createImmutable(__DIR__. '/../../');
         $dotenv->load();
-
         $this->mail = new PHPMailer(true);
         $this->mail->isSMTP();
         $this->mail->Host       = $_ENV['EMAIL_HOST'];
@@ -28,26 +28,34 @@ class MailSender {
         $this->mail->setFrom($_ENV['EMAIL_USERNAME'], 'АК Сплав');
     }
 
-    public function sendMail($email, $name): bool
+    public function sendMail(string $email, string $name, array $link): bool
     {
         try {
             // Устанавливаем получателя
             $this->mail->addAddress($email, htmlspecialchars_decode($name));
 
             // Тема письма
-            $this->mail->Subject = 'АК Сплав Металлопрокат';
+            $this->mail->Subject = $_ENV['EMAIL_SUBJECT'];
 
             // HTML-контент письма
             $this->mail->isHTML(true);
-            $this->mail->Body    = file_get_contents($_ENV['LINK_FILE']); // Загружаем HTML из файла
+            $bodyContent = file_get_contents($_ENV['LINK_FILE']); // Загружаем HTML из файла
+            $bodyContent = str_replace('{TELEGRAM}', $link['telegram'], $bodyContent);
+            $bodyContent = str_replace('{WEBSITE}', $link['website'], $bodyContent);
+            $bodyContent = str_replace('{USUB}', $link['unsub'], $bodyContent);
+            $this->mail->Body = $bodyContent;
             $this->mail->AltBody = $_ENV['ALT_BODY'];
 
             // Отправка письма
             $this->mail->send();
             return true;
         } catch (Exception $e) {
+            error_log("Некорректный email " . $this->mail->ErrorInfo, 3, 'error_log.txt');
             echo "Ошибка при отправке письма: {$this->mail->ErrorInfo}";
             return false;
         }
     }
+
+
+
 }

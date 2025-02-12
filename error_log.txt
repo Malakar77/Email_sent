@@ -1,0 +1,1 @@
+Ошибка соединения с БД: SQLSTATE[HY000] [1130] Host 'fedora' is not allowed to connect to this MySQL serverНекорректный email Некорректный email 

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Рассылка</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            background-color:#ffffff;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #073447; /* Classic Blue */
+            color: #ffffff;
+            border-radius: 8px 8px 0 0;
+        }
+        .content {
+            padding: 20px;
+        }
+        .content h2 {
+            color: #333333;
+
+            padding-bottom: 10px;
+        }
+        .content p {
+            color: #666666;
+            line-height: 1.6;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px 0;
+            color: #999999;
+            border-top: 2px solid #eeeeee;
+        }
+        .link{
+            text-decoration: none;
+            color: rgba(34, 146, 232, 1);
+        }
+        .link:hover{
+            color: rgba(34, 146, 232, 1);
+            -webkit-box-shadow: 4px 12px 8px 0px rgba(34, 146, 232, 0.2);
+            -moz-box-shadow: 4px 12px 8px 0px rgba(34, 146, 232, 0.2);
+            box-shadow: 4px 12px 8px 0px rgba(34, 146, 232, 0.2);
+        }
+        a{
+            cursor: pointer;
+        }
+        svg{
+            margin-right: 10px;
+        }
+        button{
+            display: block;
+            align-items: center;
+            margin: 0 auto;
+            width: 150px;
+            height: 50px;
+            color: #ffffff;
+            background-color: #073447;
+            border-radius: 15px;
+            font-size: 15px;
+            transition: background-color 0.4s ease;
+        }
+
+        button:hover{
+            color: #ffffff;
+            background-color: #f3a333;
+            -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+            -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+            box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Рассылка</h1>
+    </div>
+    <div class="content">
+        <h3 style="text-align: center;" class="text">Вы действительно хотите отписаться?</h3>
+        <button>Отписаться</button>
+    </div>
+    <div class="footer">
+        <p>&copy; 2025. Все права защищены.</p>
+    </div>
+</div>
+</body>
+
+<script src="js/unsub.js"></script>
+</html>
