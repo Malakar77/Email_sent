@@ -20,17 +20,17 @@
    ```sh
    cp .env.example .env
    ```
-5. Настройте параметры почты в `.env` файле:
+5. Настройте параметры почты и подключение к базе данных в `.env` файле:
    ```env
    #Подключение к Базе данных
    DB_HOST=localhost
    DB_NAME=my_sent_email
    DB_USER=user
    DB_PASS=
-   # Имя таблицы и название столбцов
-   TABLE=email
-   COLUMN_MAME=name
-   COLUMN_EMAIL=email
+   # домен ваш
+   DOMAIN_APP=
+   #Телеграм группа
+   TELEGRAM_GROUP=
    #Настройка почтовой отправки
    EMAIL_HOST=vip232.hosting.reg.ru
    EMAIL_SMTP=true;
@@ -44,12 +44,28 @@
    LINK_FILE=/path/index.html # Верстка рассылки
    ALT_BODY='альтернативный текст'
    ```
-
-6. Запустите рассылки:
+6. Запустить миграцию 
+    ```sh
+   cd baseData
+   php migrate.php
+   ```
+7. Добавить клиентов для рассылки в базу данных таблица `mailing`
+8. Запустите рассылки:
    ```sh
    php Sent.php
    ```
-
+## метрика переходов и отписка от рассылки
+1. Выгрузить папку `sait` на хостинг `https:/yourDomain/metrika/
+2. настроить фаил `.env`
+   ```env
+   #Подключение к Базе данных аналогично файлу .env основного проекта
+   DB_HOST= 
+   DB_NAME=
+   DB_USER=
+   DB_PASS=
+   #ваш домен
+   DOMAIN= 
+   ```
 ## Поддержка
 
 Если у вас возникли вопросы или проблемы, создайте issue в репозитории или свяжитесь со мной.
