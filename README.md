@@ -50,6 +50,7 @@
    php migrate.php
    ```
     Откат миграции
+   
    В файле migrate.php раскоментируйте ```$migrator->rollback(); ```
    и закоментируйте строку  ```$migrator->migrate(); ```
 
