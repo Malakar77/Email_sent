@@ -34,7 +34,7 @@ class DataBaseMysql {
             );
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $exception) {
-            error_log("Ошибка соединения с БД: " . $exception->getMessage(), 3, 'error_log.txt');
+            error_log("Ошибка соединения с БД: " . $exception->getMessage(), 3, 'error_log.log');
             echo "Ошибка соединения с БД: " . $exception->getMessage();  // Output the detailed error message
         }
         return $this->conn;

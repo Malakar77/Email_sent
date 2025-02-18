@@ -28,9 +28,20 @@ class MailSender {
         $this->mail->setFrom($_ENV['EMAIL_USERNAME'], 'АК Сплав');
     }
 
-    public function sendMail(string $email, string $name, array $link): bool
+    public function sendMail(string $email, string $name, array $link, array &$sentEmails): bool
     {
+        // Проверяем, был ли уже отправлен email
+        if (in_array($email, $sentEmails, true)) {
+            return false; // Не отправляем письмо, если этот email уже есть
+        }
+
         try {
+            // Очищаем адреса перед добавлением нового
+            $this->mail->clearAddresses(); // Очистка получателей
+            $this->mail->clearCCs();      // Очистка CC
+            $this->mail->clearBCCs();     // Очистка BCC
+            $this->mail->clearAttachments(); // Очистка вложений
+
             // Устанавливаем получателя
             $this->mail->addAddress($email, htmlspecialchars_decode($name));
 
@@ -47,11 +58,16 @@ class MailSender {
             $this->mail->AltBody = $_ENV['ALT_BODY'];
 
             // Отправка письма
-            $this->mail->send();
-            return true;
+            if ($this->mail->send()) {
+                // Добавляем email в массив отправленных
+                $sentEmails[] = $email;
+                return true;
+            }
+
+            error_log("Не удалось отправить письмо: " . $this->mail->ErrorInfo, 3, 'error_log.log');
+            return false;
         } catch (Exception $e) {
-            error_log("Некорректный email " . $this->mail->ErrorInfo, 3, 'error_log.txt');
-            echo "Ошибка при отправке письма: {$this->mail->ErrorInfo}";
+            error_log("Ошибка при отправке письма: " . $e->getMessage(), 3, 'error_log.log');
             return false;
         }
     }

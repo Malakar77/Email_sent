@@ -49,7 +49,7 @@ foreach ($users as $user) {
     ];
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        error_log("Некорректный email " . $email, 3, 'error_log.txt');
+        error_log("Некорректный email " . $email, 3, 'error_log.log');
         echo 'Некорректный email ' . $email . "\n";
         continue;
     }
@@ -79,10 +79,15 @@ foreach ($users as $user) {
     $database->query($sql, $paramTelegram);
     $database->query($sql, $paramDelete);
 
+
+    $sentEmails = [];
     // Отправляем письмо
-    if ($mailer->sendMail($email, $name, $link)) {
+    if ($mailer->sendMail($email, $name, $link, $sentEmails)) {
         $pg->interupt("Письмо успешно отправлено! " . htmlspecialchars_decode($name) . " " . $email);
+    } else {
+        $pg->interupt("Письмо не отправлено! " . htmlspecialchars_decode($name) . " " . $email);
     }
+
 
     usleep(100000);
     $pg->tick();
